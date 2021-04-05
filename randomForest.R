@@ -38,7 +38,9 @@ donnee_test = donnee[index[(ntrain+1):(ntrain+ntest)],] # création du jeu de te
 # - ntree, qui correspond au nombre d'arbre que vous voulez créer dans la foret (ici 2 dans cet exemple)
 
 ############~~~~~~nombre d'arbre = 2 ~~~~~~~~~~~~~~~~~###############
-foret = randomForest(classe~., data = donnee_app, ntree = 2, norm.votes=FALSE)
+foret = randomForest(classe~., data = donnee_app, ntree = 2,mtry=floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 2,mtry=2*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 2,mtry=3*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
 
 getTree(foret, 1)
 getTree(foret, 2)
@@ -59,15 +61,20 @@ print(sum(foret$oob.times==0))
 
 #### proportion de prédictions correctes faite par cet arbre sur l'ensemble d'apprentissage
 print(ntrain)
-sum(predict(foret,donnee_app)==donnee_app$classe)
-
+s=sum(predict(foret,donnee_app)==donnee_app$classe)
+print(s)
+print(1-(s/ntrain))
 #### erreur en generalisation (erreur reelle).
 print(ntest)
-sum(predict(foret, donnee_test)==donnee_test$classe)
+s=sum(predict(foret, donnee_test)==donnee_test$classe)
+print(s)
+print(1-(s/ntest))
 
 
 ############~~~~~~nombre d'arbre = 10 ~~~~~~~~~~~~~~~~~###############
-foret = randomForest(classe~., data = donnee_app, ntree = 10, norm.votes=FALSE)
+foret = randomForest(classe~., data = donnee_app, ntree = 10,mtry=floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 10,mtry=2*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 10,mtry=3*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
 print(foret)
 
 vote = foret$votes
@@ -84,14 +91,19 @@ print(sum(foret$oob.times==0))
 
 #### proportion de prédictions correctes faite par cet arbre sur l'ensemble d'apprentissage
 print(ntrain)
-sum(predict(foret,donnee_app)==donnee_app$classe)
-
+s=sum(predict(foret,donnee_app)==donnee_app$classe)
+print(s)
+print(1-(s/ntrain))
 #### erreur en generalisation (erreur reelle).
 print(ntest)
-sum(predict(foret, donnee_test)==donnee_test$classe)
+s=sum(predict(foret, donnee_test)==donnee_test$classe)
+print(s)
+print(1-(s/ntest))
 
 ############~~~~~~nombre d'arbre = 20 ~~~~~~~~~~~~~~~~~###############
-foret = randomForest(classe~., data = donnee_app, ntree = 20, norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 20,mtry=floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 20,mtry=2*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+foret = randomForest(classe~., data = donnee_app, ntree = 20,mtry=3*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
 print(foret)
 
 vote = foret$votes
@@ -108,14 +120,19 @@ print(sum(foret$oob.times==0))
 
 #### proportion de prédictions correctes faite par cet arbre sur l'ensemble d'apprentissage
 print(ntrain)
-sum(predict(foret,donnee_app)==donnee_app$classe)
-
+s=sum(predict(foret,donnee_app)==donnee_app$classe)
+print(s)
+print(1-(s/ntrain))
 #### erreur en generalisation (erreur reelle).
 print(ntest)
-sum(predict(foret, donnee_test)==donnee_test$classe)
+s=sum(predict(foret, donnee_test)==donnee_test$classe)
+print(s)
+print(1-(s/ntest))
 
 ############~~~~~~nombre d'arbre = 50 ~~~~~~~~~~~~~~~~~###############
-foret = randomForest(classe~., data = donnee_app, ntree = 50, norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 50,mtry=floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 50,mtry=2*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+foret = randomForest(classe~., data = donnee_app, ntree = 50,mtry=3*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
 print(foret)
 
 vote = foret$votes
@@ -132,14 +149,19 @@ print(sum(foret$oob.times==0))
 
 #### proportion de prédictions correctes faite par cet arbre sur l'ensemble d'apprentissage
 print(ntrain)
-sum(predict(foret,donnee_app)==donnee_app$classe)
-
+s=sum(predict(foret,donnee_app)==donnee_app$classe)
+print(s)
+print(1-(s/ntrain))
 #### erreur en generalisation (erreur reelle).
 print(ntest)
-sum(predict(foret, donnee_test)==donnee_test$classe)
+s=sum(predict(foret, donnee_test)==donnee_test$classe)
+print(s)
+print(1-(s/ntest))
 
 ############~~~~~~nombre d'arbre = 100 ~~~~~~~~~~~~~~~~~###############
-foret = randomForest(classe~., data = donnee_app, ntree = 100, norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 100,mtry=floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 100,mtry=2*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+foret = randomForest(classe~., data = donnee_app, ntree = 100,mtry=3*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
 print(foret)
 
 vote = foret$votes
@@ -156,14 +178,19 @@ print(sum(foret$oob.times==0))
 
 #### proportion de prédictions correctes faite par cet arbre sur l'ensemble d'apprentissage
 print(ntrain)
-sum(predict(foret,donnee_app)==donnee_app$classe)
-
+s=sum(predict(foret,donnee_app)==donnee_app$classe)
+print(s)
+print(1-(s/ntrain))
 #### erreur en generalisation (erreur reelle).
 print(ntest)
-sum(predict(foret, donnee_test)==donnee_test$classe)
+s=sum(predict(foret, donnee_test)==donnee_test$classe)
+print(s)
+print(1-(s/ntest))
 
-############~~~~~~nombre d'arbre = 500 ~~~~~~~~~~~~~~~~~###############
-foret = randomForest(classe~., data = donnee_app, ntree = 500, norm.votes=FALSE)
+############~~~~~~nombre d'arbre = 200 ~~~~~~~~~~~~~~~~~###############
+#foret = randomForest(classe~., data = donnee_app, ntree = 200,mtry=floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 200,mtry=2*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+foret = randomForest(classe~., data = donnee_app, ntree = 200,mtry=3*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
 print(foret)
 
 vote = foret$votes
@@ -180,14 +207,19 @@ print(sum(foret$oob.times==0))
 
 #### proportion de prédictions correctes faite par cet arbre sur l'ensemble d'apprentissage
 print(ntrain)
-sum(predict(foret,donnee_app)==donnee_app$classe)
-
+s=sum(predict(foret,donnee_app)==donnee_app$classe)
+print(s)
+print(1-(s/ntrain))
 #### erreur en generalisation (erreur reelle).
 print(ntest)
-sum(predict(foret, donnee_test)==donnee_test$classe)
+s=sum(predict(foret, donnee_test)==donnee_test$classe)
+print(s)
+print(1-(s/ntest))
 
 ############~~~~~~nombre d'arbre = 1000 ~~~~~~~~~~~~~~~~~###############
-foret = randomForest(classe~., data = donnee_app, ntree = 1000, norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 1000,mtry=floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+#foret = randomForest(classe~., data = donnee_app, ntree = 1000,mtry=2*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
+foret = randomForest(classe~., data = donnee_app, ntree = 1000,mtry=3*floor(sqrt(ncol(donnee)-1)), norm.votes=FALSE)
 print(foret)
 
 vote = foret$votes
@@ -204,8 +236,11 @@ print(sum(foret$oob.times==0))
 
 #### proportion de prédictions correctes faite par cet arbre sur l'ensemble d'apprentissage
 print(ntrain)
-sum(predict(foret,donnee_app)==donnee_app$classe)
-
+s=sum(predict(foret,donnee_app)==donnee_app$classe)
+print(s)
+print(1-(s/ntrain))
 #### erreur en generalisation (erreur reelle).
 print(ntest)
-sum(predict(foret, donnee_test)==donnee_test$classe)
+s=sum(predict(foret, donnee_test)==donnee_test$classe)
+print(s)
+print(1-(s/ntest))
